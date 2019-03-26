@@ -18,7 +18,9 @@ public interface BookDao {
     public List<Book> findBookByType(int typeId);
 
     //查新书
-    public List<Book> findNewsBookByType(int typeId);
+    public List<Book> findNewBook();
+    //查促销书
+    public List<Book> findDisBookBy
 
     //添加
     public int add();
