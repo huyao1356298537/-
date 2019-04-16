@@ -9,6 +9,9 @@ public class BookType {
     private int typeId;
     private String typeName;
 
+    public BookType() {
+    }
+
     public BookType(String typeName) {
         this.typeName = typeName;
     }
@@ -18,12 +21,11 @@ public class BookType {
         this.typeName = typeName;
     }
 
-
     public int getTypeId() {
         return typeId;
     }
 
-    public void setTypeId(int typeId) {
+    public void settype_id(int typeId) {
         this.typeId = typeId;
     }
 
@@ -31,7 +33,7 @@ public class BookType {
         return typeName;
     }
 
-    public void setTypeName(String typeName) {
+    public void settype_name(String typeName) {
         this.typeName = typeName;
     }
 }

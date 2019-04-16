@@ -8,10 +8,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class JdbcUtils {
-    private static String driverClassName="com.mysql.cj.jdbc.Driver";
-    private static String url="jdbc:mysql:///newsdb?serverTimezone=UTC";
+    private static String driverClassName="com.mysql.jdbc.Driver";
+    private static String url="jdbc:mysql:///bookstore";
     private static String user="root";
-    private static String password="123456";
+    private static String password="1234";
     private static Connection connection;
     /*
         1. 知识点学了，不知道怎么用

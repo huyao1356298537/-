@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><plugin>
+    <id>com.fr.plugin.mobile.push</id>
+    <name><![CDATA[内置推送插件]]></name>
+    <active>yes</active>
+    <version>1.1</version>
+    <env-version>9.0</env-version>
+    <jartime>2017-10-24</jartime>
+    <vendor>finereport.michel</vendor>
+    <description><![CDATA[推送的内置插件]]></description>
+    <change-notes><![CDATA[无]]></change-notes>
+    <hidden>yes</hidden>
+    <function-recorder class="com.fr.plugin.mobile.push.MessagePusher"/>
+    <extra-platform>
+        <MobilePushProvider class="com.fr.plugin.mobile.push.MessagePusher"/>
+    </extra-platform>
+</plugin>

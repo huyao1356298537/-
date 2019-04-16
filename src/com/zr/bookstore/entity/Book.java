@@ -14,30 +14,40 @@ public class Book {
     private int repertory;
     private int typeId;
     private String imagepath;
-    private Date publicationTime;
-    private int isdiscount;
+    private Date publicationDate;
+    private int issale;
+    private String press;
 
-    public Date getPublicationTime() {
-        return publicationTime;
+    public Date getPublicationDate() {
+        return publicationDate;
     }
 
-    public void setPublicationTime(Date publicationTime) {
-        this.publicationTime = publicationTime;
+    public void setpublication_date(Date publicationDate) {
+        this.publicationDate = publicationDate;
     }
 
-    public int getIsdiscount() {
-        return isdiscount;
+    public String getPress() {
+        return press;
     }
 
-    public void setIsdiscount(int isdiscount) {
-        this.isdiscount = isdiscount;
+    public void setpress(String press) {
+        this.press = press;
+    }
+
+
+    public int getissale() {
+        return issale;
+    }
+
+    public void setissale(int issale) {
+        this.issale = issale;
     }
 
     public int getBookId() {
         return bookId;
     }
 
-    public void setBookId(int bookId) {
+    public void setbook_id(int bookId) {
         this.bookId = bookId;
     }
 
@@ -45,7 +55,7 @@ public class Book {
         return bookName;
     }
 
-    public void setBookName(String bookName) {
+    public void setbook_id(String bookName) {
         this.bookName = bookName;
     }
 
@@ -53,7 +63,7 @@ public class Book {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setauthor(String author) {
         this.author = author;
     }
 
@@ -61,7 +71,7 @@ public class Book {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setprice(int price) {
         this.price = price;
     }
 
@@ -69,7 +79,7 @@ public class Book {
         return sellcount;
     }
 
-    public void setSellcount(int sellcount) {
+    public void setsellcount(int sellcount) {
         this.sellcount = sellcount;
     }
 
@@ -77,7 +87,7 @@ public class Book {
         return repertory;
     }
 
-    public void setRepertory(int repertory) {
+    public void setrepertory(int repertory) {
         this.repertory = repertory;
     }
 
@@ -85,7 +95,7 @@ public class Book {
         return typeId;
     }
 
-    public void setTypeId(int typeId) {
+    public void settype_id(int typeId) {
         this.typeId = typeId;
     }
 
@@ -93,15 +103,14 @@ public class Book {
         return imagepath;
     }
 
-    public void setImagepath(String imagepath) {
+    public void setimagepath(String imagepath) {
         this.imagepath = imagepath;
     }
 
     public Book() {
     }
 
-    public Book(int bookId, String bookName, String author, int price, int sellcount, int repertory,
-                int typeId, String imagepath, Date publicationTime, int isdiscount) {
+    public Book(int bookId, String bookName, String author, int price, int sellcount, int repertory, int typeId, String imagepath, Date publicationDate, int issale, String press) {
         this.bookId = bookId;
         this.bookName = bookName;
         this.author = author;
@@ -110,12 +119,12 @@ public class Book {
         this.repertory = repertory;
         this.typeId = typeId;
         this.imagepath = imagepath;
-        this.publicationTime = publicationTime;
-        this.isdiscount = isdiscount;
+        this.publicationDate = publicationDate;
+        this.issale = issale;
+        this.press = press;
     }
 
-    public Book(String bookName, String author, int price, int sellcount, int repertory,
-                int typeId, String imagepath, Date publicationTime, int isdiscount) {
+    public Book(String bookName, String author, int price, int sellcount, int repertory, int typeId, String imagepath, Date publicationDate, int issale, String press) {
         this.bookName = bookName;
         this.author = author;
         this.price = price;
@@ -123,7 +132,8 @@ public class Book {
         this.repertory = repertory;
         this.typeId = typeId;
         this.imagepath = imagepath;
-        this.publicationTime = publicationTime;
-        this.isdiscount = isdiscount;
+        this.publicationDate = publicationDate;
+        this.issale = issale;
+        this.press = press;
     }
 }

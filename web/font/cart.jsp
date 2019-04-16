@@ -1,227 +1,151 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2019/3/25 0025
-  Time: 17:43
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
-    <title>Book Store</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
-    </head>
-    <body>
-    <div id="wrap">
+    <%--
+      Created by IntelliJ IDEA.
+      User: Administrator
+      Date: 2019/3/25 0025
+      Time: 17:43
+      To change this template use File | Settings | File Templates.
+    --%>
+        <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+        <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        <html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
+        <title>三味书屋</title>
+        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css" />
+            <script type="text/javascript" src="<%=request.getContextPath()%>/static/js/jquery.min.js"></script>
 
-    <div class="header">
-    <div class="logo"><a href="index.html"><img src="images/logo.gif" alt="" title="" border="0" /></a></div>
-    <div id="menu">
-    <ul>
-    <li class="selected"><a href="fontmain.jsp">首页</a></li>
-    <li><a href="about.jsp">关于我们</a></li>
-    <li><a href="category.jsp">图书</a></li>
-    <li><a href="specials.jsp">特价书</a></li>
-    <li><a href="myaccount.jsp">登录</a></li>
-    <li><a href="register.jsp">注册</a></li>
-    <li><a href="details.jsp">价格</a></li>
-    <li><a href="contact.jsp">联系我们</a></li>
-    </ul>
-    </div>
+        </head>
+        <body>
+        <div id="wrap">
+
+        //动态引入文件
+        <jsp:include page="commons/header.jsp"/>
 
 
-    </div>
+        <div class="center_content">
+
+        <div class="left_content">
+        <div class="title"><span class="title_icon"><img src="../images/bullet1.gif" alt="" title=""
+        /></span>我的购物车</div>
+
+        <div class="feat_prod_box_details">
+
+        <table class="cart_table">
+        <tr class="cart_title">
+        <td>书名</td>
+        <td>作者</td>
+        <td>价格</td>
+        <td>数目</td>
+        <td>总价</td>
+        </tr>
+
+        <c:forEach items="${cartList}" var="cart">
+            <tr>
+            <td id="nameid">${cart.bookName}</td>
+            <td >${cart.author}</td>
+            <td>${cart.price}</td>
+            <td>${cart.count}</td>
+            <td>${cart.price}</td>
+            </tr>
+        </c:forEach>
+
+        <tr>
+        <td colspan="4" class="cart_total"><span class="red">总计:</span></td>
+         <td id="amount">${sum}</td>
+        </tr>
+
+        </table>
+        <%--<a href="/MainServlet" class="continue">&lt; 继续购买</a>--%>
+        <%--<a href="#" class="checkout">立即结算 &gt;</a>--%>
+        <button class="checkout" onclick="toMainServlet()">继续购买</button>
+        <button class="checkout" onclick="toOrderServlet()">立即结算</button>
+        <script>
+            function toMainServlet() {
+                location.href="<%=request.getContextPath()%>/MainServlet"
+            }
+                function toOrderServlet() {
+                var name = prompt("请输入收货人姓名")
+                var phoneNumber = prompt("请输入收货人手机号")
+                var amount = document.getElementById("amount").innerHTML
+                var bookName = document.getElementById("nameid").innerHTML
+            //AJAX
+        /*    $.ajax({
+                  type:"post",
+                  url:"/OrderServlet",
+                data:{
+                      "action":"add",
+                      "oid":id,
+                      "name":name,
+                      "phoneNumber":phoneNumber
+            },
+            success:function(msg) {
+                if (msg==1) {
+                    alert(123)
+            }
+            }
+            })*/
+                location.href="<%=request.getContextPath()%>/OrderServlet?action=add&amount="+amount+"&name="+name+"&phoneNumber="+phoneNumber+"&bookName="+bookName
+                }
+        </script>
+        </div>
+        <div class="clear"></div>
+        </div><!--end of left content-->
 
 
-    <div class="center_content">
-    <div class="left_content">
-    <div class="title"><span class="title_icon"><img src="images/bullet1.gif" alt="" title="" /></span>My cart</div>
+        <div class="right_content">
 
-    <div class="feat_prod_box_details">
+        <%--&lt;%&ndash;引入购物车&ndash;%&gt;--%>
+        <%--<jsp:include page="commons/shoppingcar.jsp"/>--%>
+        <%--引入商家寄语--%>
+        <jsp:include page="commons/storemsg.jsp"/>
+        <%--商品促销--%>
+        <%--<jsp:include page="promotions.jsp"/>--%>
+        <div class="right_box">
+        <div class="title"><span class="title_icon"><img src="<%=request.getContextPath()%>/images/bullet4.gif" alt="" title="" /></span>友情折扣</div>
+        <c:forEach items="${threeSaleBook}"  var="book" >
+            <div class="new_prod_box">
+            <a href="<%=request.getContextPath()%>/BookServlet?action=queryOne&bookId=${book.bookId}">${book.bookName}</a>
+            <div class="new_prod_bg">
+            <a href="details.jsp"><img src="<%=request.getContextPath()%>/font/images/${book.imagepath}" width="60px" height="100px" alt="" title="" class="thumb" border="0" /></a>
+            </div>
+            </div>
+        </c:forEach>
+        </div>
+        <%--分类--%>
+        <%--<jsp:include page="categories.jsp"/>--%>
+        <div class="right_box">
+        <div class="title"><span class="title_icon"><img src="<%=request.getContextPath()%>/images/bullet5.gif" alt="" title="" /></span>分类</div>
+        <ul class="list">
+        <c:forEach items="${typeList}" var="booktype" >
+            <li><a href="<%=request.getContextPath()%>/BookServlet?action=queryByType&typeId=${booktype.typeId}">${booktype.typeName}</a></li>
+        </c:forEach>
+        </ul>
 
-    <table class="cart_table">
-    <tr class="cart_title">
-    <td>Item pic</td>
-    <td>Book name</td>
-    <td>Unit price</td>
-    <td>Qty</td>
-    <td>Total</td>
-    </tr>
+        <div class="title"><span class="title_icon"><img src="<%=request.getContextPath()%>/images/bullet6.gif" alt="" title="" /></span>友情链接</div>
+        <ul class="list">
+        <c:forEach var="link" items="${linkList}">
+            <li>
+            <a href="${link.linkUrl}" target="_blank">${link.linkName}</a>
+            </li>
+        </c:forEach>
 
-    <tr>
-    <td><a href="details.html"><img src="images/cart_thumb.gif" alt="" title="" border="0" class="cart_thumb" /></a></td>
-    <td>Books</td>
-    <td>100$</td>
-    <td>1</td>
-    <td>100$</td>
-    </tr>
-    <tr>
-    <td><a href="details.html"><img src="images/cart_thumb.gif" alt="" title="" border="0" class="cart_thumb" /></a></td>
-    <td>Books</td>
-    <td>100$</td>
-    <td>1</td>
-    <td>100$</td>
-    </tr>
-    <tr>
-    <td><a href="details.html"><img src="images/cart_thumb.gif" alt="" title="" border="0" class="cart_thumb" /></a></td>
-    <td>Books</td>
-    <td>100$</td>
-    <td>1</td>
-    <td>100$</td>
-    </tr>
-
-    <tr>
-    <td colspan="4" class="cart_total"><span class="red">TOTAL SHIPPING:</span></td>
-    <td> 250$</td>
-    </tr>
-
-    <tr>
-    <td colspan="4" class="cart_total"><span class="red">TOTAL:</span></td>
-    <td> 325$</td>
-    </tr>
-
-    </table>
-    <a href="#" class="continue">&lt; continue</a>
-    <a href="#" class="checkout">checkout &gt;</a>
-
-
-
-
-    </div>
-
-
-
-
-
-
-    <div class="clear"></div>
-    </div><!--end of left content-->
-
-    <div class="right_content">
-
-    <div class="languages_box">
-    <span class="red">Languages:</span>
-    <a href="#"><img src="images/gb.gif" alt="" title="" border="0" /></a>
-    <a href="#"><img src="images/fr.gif" alt="" title="" border="0" /></a>
-    <a href="#"><img src="images/de.gif" alt="" title="" border="0" /></a>
-    </div>
-    <div class="currency">
-    <span class="red">Currency: </span>
-    <a href="#">GBP</a>
-    <a href="#">EUR</a>
-    <a href="#"><strong>USD</strong></a>
-    </div>
-
-
-    <div class="cart">
-    <div class="title"><span class="title_icon"><img src="images/cart.gif" alt="" title="" /></span>My cart</div>
-    <div class="home_cart_content">
-    3 x items | <span class="red">TOTAL: 100$</span>
-    </div>
-    <a href="cart.html" class="view_cart">view cart</a>
-
-    </div>
-
-    <div class="title"><span class="title_icon"><img src="images/bullet3.gif" alt="" title="" /></span>About Our Store</div>
-    <div class="about">
-    <p>
-    <img src="images/about.gif" alt="" title="" class="right" />
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.
-    </p>
-
-    </div>
-
-    <div class="right_box">
-
-    <div class="title"><span class="title_icon"><img src="images/bullet4.gif" alt="" title="" /></span>Promotions</div>
-    <div class="new_prod_box">
-    <a href="details.html">product name</a>
-    <div class="new_prod_bg">
-    <span class="new_icon"><img src="images/promo_icon.gif" alt="" title="" /></span>
-    <a href="details.html"><img src="images/thumb1.gif" alt="" title="" class="thumb" border="0" /></a>
-    </div>
-    </div>
-
-    <div class="new_prod_box">
-    <a href="details.html">product name</a>
-    <div class="new_prod_bg">
-    <span class="new_icon"><img src="images/promo_icon.gif" alt="" title="" /></span>
-    <a href="details.html"><img src="images/thumb2.gif" alt="" title="" class="thumb" border="0" /></a>
-    </div>
-    </div>
-
-    <div class="new_prod_box">
-    <a href="details.html">product name</a>
-    <div class="new_prod_bg">
-    <span class="new_icon"><img src="images/promo_icon.gif" alt="" title="" /></span>
-    <a href="details.html"><img src="images/thumb3.gif" alt="" title="" class="thumb" border="0" /></a>
-    </div>
-    </div>
-
-    </div>
-
-    <div class="right_box">
-
-    <div class="title"><span class="title_icon"><img src="images/bullet5.gif" alt="" title="" /></span>Categories</div>
-
-    <ul class="list">
-    <li><a href="#">accesories</a></li>
-    <li><a href="#">books gifts</a></li>
-    <li><a href="#">specials</a></li>
-    <li><a href="#">hollidays gifts</a></li>
-    <li><a href="#">accesories</a></li>
-    <li><a href="#">books gifts</a></li>
-    <li><a href="#">specials</a></li>
-    <li><a href="#">hollidays gifts</a></li>
-    <li><a href="#">accesories</a></li>
-    <li><a href="#">books gifts</a></li>
-    <li><a href="#">specials</a></li>
-    </ul>
-
-    <div class="title"><span class="title_icon"><img src="images/bullet6.gif" alt="" title="" /></span>Partners</div>
-
-    <ul class="list">
-    <li><a href="#">accesories</a></li>
-    <li><a href="#">books gifts</a></li>
-    <li><a href="#">specials</a></li>
-    <li><a href="#">hollidays gifts</a></li>
-    <li><a href="#">accesories</a></li>
-    <li><a href="#">books gifts</a></li>
-    <li><a href="#">specials</a></li>
-    <li><a href="#">hollidays gifts</a></li>
-    <li><a href="#">accesories</a></li>
-    </ul>
-
-    </div>
-
-
-    </div><!--end of right content-->
+        </ul>
+        </div>
 
 
 
 
-    <div class="clear"></div>
-    </div><!--end of center content-->
+        </div>
+        <div class="clear"></div>
 
 
-    <div class="footer">
-    <div class="left_footer"><img src="images/footer_logo.gif" alt="" title="" /><br /> <a href="http://www.cssmoban.com/" title="free templates">cssmoban</a></div>
-    <div class="right_footer">
-    <a href="#">home</a>
-    <a href="#">about us</a>
-    <a href="#">services</a>
-    <a href="#">privacy policy</a>
-    <a href="#">contact us</a>
-
-    </div>
+        <%--引入底部模块--%>
+        <jsp:include page="commons/footer.jsp"/>
 
 
-    </div>
+        </div>
 
-
-    </div>
-
-    </body>
-    </html>
+        </body>
+        </html>

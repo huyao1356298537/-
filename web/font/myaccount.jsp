@@ -1,212 +1,186 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2019/3/25 0025
-  Time: 17:19
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
-    <title>Book Store</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
-    </head>
-    <body>
-    <div id="wrap">
+    <%--
+      Created by IntelliJ IDEA.
+      User: Administrator
+      Date: 2019/3/25 0025
+      Time: 17:19
+      To change this template use File | Settings | File Templates.
+    --%>
+        <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+        <%@include file="../background/commons/info.jsp" %>
+        <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-    <div class="header">
-    <div class="logo"><a href="index.html"><img src="images/logo.gif" alt="" title="" border="0" /></a></div>
-    <div id="menu">
-    <ul>
-    <li class="selected"><a href="fontmain.jsp">首页</a></li>
-    <li><a href="about.jsp">关于我们</a></li>
-    <li><a href="category.jsp">图书</a></li>
-    <li><a href="specials.jsp">特价书</a></li>
-    <li><a href="myaccount.jsp">登录</a></li>
-    <li><a href="register.jsp">注册</a></li>
-    <li><a href="details.jsp">价格</a></li>
-    <li><a href="contact.jsp">联系我们</a></li>
-    </ul>
-    </div>
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        <html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>三味书屋</title>
+        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css" />
+        </head>
+        <body>
+        <div id="wrap">
+
+        <%--//动态引入文件--%>
+        <jsp:include page="commons/header.jsp"/>
 
 
-    </div>
+        <div class="center_content">
+        <div class="left_content">
+        <div class="title"><span class="title_icon"><img src="../images/bullet1.gif" alt="" title=""
+        /></span>走进三味书屋...</div>
+
+        <div class="feat_prod_box_details">
+
+        <p class="details">
+        &nbsp;&nbsp;&nbsp;未见面之前，我幻想过你无数中模样，我看见你在天寒地冻中被雾气缭绕，在末世洪荒里执着向前，在细碎光影里明媚如花。尚未靠近只因我们都在精心准备，我们在划破暗夜的启明星下，在繁声喧嚣的人潮汹涌中，执着等待岁月转角处、春暖花开里的牵手不离；末世流年里，枝影芳尘中，你一定和我一样，在期待每一次的温暖相遇...
+        </p>
+
+        <div class="contact_form">
+
+        <div class="form_subtitle">请登录您的账号</div>
+
+        <form name="register" action="post" class="layui-form" >
+
+        <div class="form_row">
+        <%--<label class="contact"><strong>用户名:</strong></label>--%>
+        <%--<input type="text" class="contact_input" />--%>
+        <strong>用户名:</strong><input name="username" placeholder="用户名" type="text" lay-verify="username"
+        class="layui-input" >
+        </div>
+
+        <div class="form_row">
+        <%--<label class="contact"><strong>密码:</strong></label>--%>
+        <%--<input type="text" class="contact_input" />--%>
+        <strong>密码:</strong><input name="password" lay-verify="password" placeholder="密码" type="password"
+        class="layui-input">
+        </div>
+
+        <%--<div class="form_row">--%>
+        <%--<div class="terms">--%>
+        <%--<input type="checkbox" name="terms" />--%>
+        <%--记住我--%>
+        <%--</div>--%>
+        <%--</div>--%>
+
+        <div class="form_row">
+        <%--<input type="submit" class="register" value="登录" />--%>
+        <input value="登录" lay-submit lay-filter="login" style="width:40%; height: 30px " type="submit" class="register">
+        </div>
+
+        </form>
+
+        </div>
+        </div>
+
+        <script>
+
+        $(function () {
+        layui.use('form', function(index){
+        var form = layui.form;
+        form.verify({
+        username: function(value, item){ //value：表单的值、item：表单的DOM对象
+        if(!new RegExp("^[a-zA-Z][a-zA-Z0-9_]{4,15}$").test(value)){
+        return '用户名字母开头，允许5-16字节，允许字母数字下划线';
+        }
+        }
+        //我们既支持上述函数式的方式，也支持下述数组的形式
+        //数组的两个值分别代表：[正则匹配、匹配不符时的提示文字]
+        ,password: [
+        /^[a-zA-Z]\w{5,17}$/,'密码以字母开头，长度在6~18之间，只能包含字母、数字和下划线'
+        ]
+        });
+        //监听提交
+        form.on('submit(login)', function(data){
+        $.ajax({
+        type: "POST",
+        url: "<%=request.getContextPath()%>/UserLoginServlet",
+        data: "username="+data.field.username+"&password="+data.field.password,
+        success: function(msg){
+        var obj = eval("("+msg+")");
+        if(obj.code=="1001"){
+        layer.msg(obj.message,function(){
+        location.href='<%=request.getContextPath()%>/MainServlet'
+        })
+        if(${username!=null}){
+        // 获得frame索引
+        var index = parent.layer.getFrameIndex(window.name);
+        //关闭当前frame
+        parent.layer.close(index);
+        window.parent.location.reload();
+        }
+        }else{
+        layer.msg(obj.message);
+        }
+        }
+        });
+        return false;
+        });
+        });
+        })
 
 
-    <div class="center_content">
-    <div class="left_content">
-    <div class="title"><span class="title_icon"><img src="images/bullet1.gif" alt="" title="" /></span>My account</div>
-
-    <div class="feat_prod_box_details">
-    <p class="details">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.
-    </p>
-
-    <div class="contact_form">
-    <div class="form_subtitle">login into your account</div>
-    <form name="register" action="#">
-    <div class="form_row">
-    <label class="contact"><strong>Username:</strong></label>
-    <input type="text" class="contact_input" />
-    </div>
+        </script>
 
 
-    <div class="form_row">
-    <label class="contact"><strong>Password:</strong></label>
-    <input type="text" class="contact_input" />
-    </div>
+        <div class="clear"></div>
+        </div><!--end of left content-->
 
-    <div class="form_row">
-    <div class="terms">
-    <input type="checkbox" name="terms" />
-    Remember me
-    </div>
-    </div>
+        <div class="right_content">
 
+        <%--商城寄语--%>
+        <jsp:include page="commons/storemsg.jsp"/>
+        <%--购物车--%>
+        <jsp:include page="commons/shoppingcar.jsp"/>
+        <%--商品促销--%>
+        <%--<jsp:include page="promotions.jsp"/>--%>
+        <div class="right_box">
+        <div class="title"><span class="title_icon"><img src="<%=request.getContextPath()%>/images/bullet4.gif" alt=""
+        title="" /></span>友情折扣</div>
+        <c:forEach items="${threeSaleBook}" var="book">
+            <div class="new_prod_box">
+            <a href="<%=request.getContextPath()%>/BookServlet?action=queryOne&bookId=${book.bookId}">${book.bookName}</a>
+            <div class="new_prod_bg">
+            <a href="details.jsp"><img src="<%=request.getContextPath()%>/font/images/${book.imagepath}" width="60px" height="100px" alt="" title=""
+            class="thumb" border="0" /></a>
+            </div>
+            </div>
+        </c:forEach>
+        </div>
+        <%--分类--%>
+        <%--<jsp:include page="categories.jsp"/>--%>
+        <div class="right_box">
+        <div class="title"><span class="title_icon"><img src="<%=request.getContextPath()%>/images/bullet5.gif" alt=""
+        title="" /></span>分类</div>
+        <ul class="list">
+        <c:forEach items="${typeList}" var="booktype">
+            <li><a href="<%=request.getContextPath()%>/BookServlet?action=queryByType&typeId=${booktype.typeId}">${booktype.typeName}</a></li>
+        </c:forEach>
+        </ul>
 
-    <div class="form_row">
-    <input type="submit" class="register" value="login" />
-    </div>
+        <div class="title"><span class="title_icon"><img src="<%=request.getContextPath()%>/images/bullet6.gif" alt=""
+        title="" /></span>友情链接</div>
+        <ul class="list">
+        <c:forEach items="${linkList}" var="link">
+            <li>
+            <a href="${link.linkUrl}" target="_blank">${link.linkName}</a>
+            </li>
+        </c:forEach>
 
-    </form>
-
-    </div>
-
-    </div>
-
-
-
-
-
-
-    <div class="clear"></div>
-    </div><!--end of left content-->
-
-    <div class="right_content">
-
-    <div class="languages_box">
-    <span class="red">Languages:</span>
-    <a href="#"><img src="images/gb.gif" alt="" title="" border="0" /></a>
-    <a href="#"><img src="images/fr.gif" alt="" title="" border="0" /></a>
-    <a href="#"><img src="images/de.gif" alt="" title="" border="0" /></a>
-    </div>
-    <div class="currency">
-    <span class="red">Currency: </span>
-    <a href="#">GBP</a>
-    <a href="#">EUR</a>
-    <a href="#"><strong>USD</strong></a>
-    </div>
-
-
-    <div class="cart">
-    <div class="title"><span class="title_icon"><img src="images/cart.gif" alt="" title="" /></span>My cart</div>
-    <div class="home_cart_content">
-    3 x items | <span class="red">TOTAL: 100$</span>
-    </div>
-    <a href="cart.html" class="view_cart">view cart</a>
-
-    </div>
-
-    <div class="title"><span class="title_icon"><img src="images/bullet3.gif" alt="" title="" /></span>About Our Store</div>
-    <div class="about">
-    <p>
-    <img src="images/about.gif" alt="" title="" class="right" />
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.
-    </p>
-
-    </div>
-
-    <div class="right_box">
-
-    <div class="title"><span class="title_icon"><img src="images/bullet4.gif" alt="" title="" /></span>Promotions</div>
-    <div class="new_prod_box">
-    <a href="details.html">product name</a>
-    <div class="new_prod_bg">
-    <span class="new_icon"><img src="images/promo_icon.gif" alt="" title="" /></span>
-    <a href="details.html"><img src="images/thumb1.gif" alt="" title="" class="thumb" border="0" /></a>
-    </div>
-    </div>
-
-    <div class="new_prod_box">
-    <a href="details.html">product name</a>
-    <div class="new_prod_bg">
-    <span class="new_icon"><img src="images/promo_icon.gif" alt="" title="" /></span>
-    <a href="details.html"><img src="images/thumb2.gif" alt="" title="" class="thumb" border="0" /></a>
-    </div>
-    </div>
-
-    <div class="new_prod_box">
-    <a href="details.html">product name</a>
-    <div class="new_prod_bg">
-    <span class="new_icon"><img src="images/promo_icon.gif" alt="" title="" /></span>
-    <a href="details.html"><img src="images/thumb3.gif" alt="" title="" class="thumb" border="0" /></a>
-    </div>
-    </div>
-
-    </div>
-
-    <div class="right_box">
-
-    <div class="title"><span class="title_icon"><img src="images/bullet5.gif" alt="" title="" /></span>Categories</div>
-
-    <ul class="list">
-    <li><a href="#">accesories</a></li>
-    <li><a href="#">books gifts</a></li>
-    <li><a href="#">specials</a></li>
-    <li><a href="#">hollidays gifts</a></li>
-    <li><a href="#">accesories</a></li>
-    <li><a href="#">books gifts</a></li>
-    <li><a href="#">specials</a></li>
-    <li><a href="#">hollidays gifts</a></li>
-    <li><a href="#">accesories</a></li>
-    <li><a href="#">books gifts</a></li>
-    <li><a href="#">specials</a></li>
-    </ul>
-
-    <div class="title"><span class="title_icon"><img src="images/bullet6.gif" alt="" title="" /></span>Partners</div>
-
-    <ul class="list">
-    <li><a href="#">accesories</a></li>
-    <li><a href="#">books gifts</a></li>
-    <li><a href="#">specials</a></li>
-    <li><a href="#">hollidays gifts</a></li>
-    <li><a href="#">accesories</a></li>
-    <li><a href="#">books gifts</a></li>
-    <li><a href="#">specials</a></li>
-    <li><a href="#">hollidays gifts</a></li>
-    <li><a href="#">accesories</a></li>
-    </ul>
-
-    </div>
+        </ul>
+        </div>
 
 
-    </div><!--end of right content-->
+        </div>
 
 
+        <div class="clear"></div>
+        </div><!--end of center content-->
 
 
-    <div class="clear"></div>
-    </div><!--end of center content-->
+        <%--引入底部模块--%>
+        <jsp:include page="commons/footer.jsp"/>
 
+        </div>
 
-    <div class="footer">
-    <div class="left_footer"><img src="images/footer_logo.gif" alt="" title="" /><br /> <a href="http://www.cssmoban.com/" title="free templates">cssmoban</a></div>
-    <div class="right_footer">
-    <a href="#">home</a>
-    <a href="#">about us</a>
-    <a href="#">services</a>
-    <a href="#">privacy policy</a>
-    <a href="#">contact us</a>
-
-    </div>
-
-
-    </div>
-
-
-    </div>
-
-    </body>
-    </html>
+        </body>
+        </html>

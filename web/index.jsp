@@ -11,6 +11,8 @@
     <title>$Title$</title>
   </head>
   <body>
-  $END$
+  <%
+    response.sendRedirect(request.getContextPath()+"/MainServlet");
+  %>
   </body>
 </html>

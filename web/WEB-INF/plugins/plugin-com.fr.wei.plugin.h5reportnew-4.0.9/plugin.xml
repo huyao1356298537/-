@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<plugin>
+    <id>com.fr.wei.plugin.h5reportnew</id>
+    <name><![CDATA[新移动端Html5方式预览报表]]></name>
+    <active>yes</active>
+    <version>4.0.9</version>
+    <env-version>8.0</env-version>
+    <vendor>finereport.wei</vendor>   
+    <jartime>2017-11-08</jartime>
+    <description><![CDATA[除了原生App展示报表外，提供移动浏览器预览报表,表单以及决策系统的插件，可用于微信,钉钉以及App中集成]]></description>
+    <change-notes>
+        <![CDATA[
+		[2018-03-31]<br/>
+		4.0.9:修复下拉选项不对齐的bug<br/>
+		4.0.9:修复总是使用缓存的bug<br/>
+		[2018-03-15]<br/>
+		4.0.8:修复不显示自定义按钮的bug<br/>
+		4.0.8:修复图表设置条件属性隐藏后报表报错的bug<br/>
+		[2018-03-01]<br/>
+		4.0.7:修复冻结行列边框有缝隙的bug<br/>
+		4.0.7:修复BI4.1版本分享给我的显示空白的bug<br/>
+		[2018-02-02]<br/>
+		4.0.6:修复联动的一些bug<br/>
+		[2018-01-19]<br/>
+		4.0.5:修复日期控件的一些bug<br/>
+		4.0.5:修复安卓手机键盘弹出后一些适应的bug<br/>
+		[2018-01-08]<br/>
+		4.0.4:修复safari上部分日期格式不生效的bug<br/>
+		[2017-12-22]<br/>
+		4.0.3:提高tab组件渲染的速度和解决一些tab控件的显示bug<br/>
+		4.0.3:修复js调用下拉控件的setValue不会触发联动的bug<br/>
+		[2017-12-09]<br/>
+        4.0.2:MOBILE-7053:修复保留布局tab控件滑动困难的bug<br/>
+		4.0.2:MOBILE-7000:修复钉钉登录报错的bug<br/>
+		4.0.2:MOBILE-6817:修复下拉控件搜索输入中文过程中持续触发搜索导致卡顿的bug<br/>
+		4.0.2:MOBILE-6959:修复部分情况下联动报错的bug<br/>
+		[2017-11-24]<br/>
+        4.0.1:MOBILE-6838:修复图表中文名时显示不出来的bug<br/>
+		4.0.1:MOBILE-6698:修复重布局加不限制高度的情况下冻结高度异常的bug<br/>
+		[2017-11-14]<br/>
+        4.0.0:适配9.0服务器<br/>
+		[2017-11-10]<br/>
+        3.14:MOBILE-6503:修复二次查询后图表联动失效的bug<br/>
+		3.14:MOBILE-6483:修复FS目录树名字过长会换行的bug<br/>
+		3.14:MOBILE-6485:修复登录超时以后进入二级目录报错的bug<br/>
+		[2017-10-23]<br/>
+        3.13:MOBILE-5654:修复H5安卓中使用iframe内容超出边框的bug<br/>
+		3.13:MOBILE-5838:修复iOS中部分模板tab控件滑动时会消失的bug<br/>
+		3.13:MOBILE-5912:修复日期控件结束日期联动无效的bug<br/>
+        [2017-09-28]<br/>
+        3.12:MOBILE-5481:修复动态参数后格子居中格式发生改变的bug<br/>
+        3.12:MOBILE-5357:修复冻结表头显示不全的bug<br/>
+        3.12:MOBILE-5109:修复带标题的报表块设置双向自适应仍然可以滚动的bug<br/>
+        [2017-09-11]<br/>
+        3.11:MOBILE-4823:修复报表块隐藏时显示异常的bug<br/>
+        3.11:MOBILE-4871&MOBILE-4870:修复tab布局里内容会不显示的bug<br/>
+        [2017-08-25]<br/>
+        3.09:MOBILE-4555:修复tab组件里图表文字显示不全的bug<br/>
+        3.09:MOBILE-4512:修复iframe里跨域集成H5报表报错的bug<br/>
+        3.09:MOBILE-2887:修复H5插件资源请求可能导致XSS漏洞的bug<br/>
+        [2017-08-14]<br/>
+        3.08:MOBILE-4270:修复安卓App上集成H5一定要开启domStorage的bug<br/>
+        3.08:MOBILE-4198:修复内置查询按钮无法通过fireEvent('click')触发点击的bug<br/>
+        [2017-07-21]<br/>
+        3.07:MOBILE-4098:修复部分安卓手机原生浏览器上报表块分页按钮换行的bug<br/>
+        3.07:MOBILE-3808:修复多个报表块调用gotopage方法会互相影响的bug<br/>
+        3.07:MOBILE-3798:修复表单报表块里图表设置自动刷新H5预览报错的bug<br/>
+        [2017-07-01]<br/>
+        3.06:MOBILE-3714:修复H5下图表负数格式显示错误的bug<br/>
+        3.06:MOBILE-3713:修复H5下报表块冻结时文字没有垂直居中的bug<br/>
+        3.06:MOBILE-3709:修复H5频繁刷新页面报错的bug<br/>
+        3.06:MOBILE-3623:修复H5中文参数不能正确传递的bug<br/>
+        [2017-06-16]<br/>
+        3.05:修复安卓部分浏览器选择下拉选项时触发查询按钮的透传bug<br/>
+        3.05:修复超链时中文参数传递失败的bug<br/>
+        3.05:修复点击图表时会触发报表工具栏显示/隐藏的bug<br/>
+        3.05:修复保留布局时tab组件会嵌套滚动的bug<br/>
+        3.05:修复公式作为js参数不生效的bug<br/>
+        [2017-05-27]<br/>
+        3.04:修复H5下双向自适应后会因为文字自适应高度导致出现滚动条的bug<br/>
+        [2017-05-18]<br/>
+        3.03:修复H5下拉复选框有默认值时数据重复加载的bug<br/>
+        [2017-05-12]<br/>
+        3.02:修复H5联动标题不变化的bug<br/>
+        [2017-05-11]<br/>
+        3.01:修复日期控件默认值是日期时报错的bug<br/>
+        3.01:修复JS缓存失效的问题<br/>
+        [2017-04-28]<br/>
+        3.00:修复冻结错位的bug<br/>
+        3.00:修复表单上图表字体会受报表块影响的bug<br/>
+        3.00:修复表单横屏字体不变化的bug<br/>
+        ]]>
+    </change-notes>
+    <extra-core>
+        <WebService class="com.fr.wei.plugin.h5reportnew.server.web.service.Html5MobileCprService"/>
+        <WebService class="com.fr.wei.plugin.h5reportnew.server.web.service.Html5FSService"/>
+        <WebService class="com.fr.wei.plugin.h5reportnew.server.web.service.Html5MobileEntryService"/>
+        <WebService class="com.fr.wei.plugin.h5reportnew.server.web.service.Html5FileVersionControlService"/>
+        <WebService class="com.fr.wei.plugin.h5reportnew.server.web.service.Html5ManagementService" />
+        <WebService class="com.fr.wei.plugin.h5reportnew.server.web.service.Html5I18nService" />
+        <WebService class="com.fr.wei.plugin.h5reportnew.server.web.service.Html5MonitorPostMessageService" />
+        <WebService class="com.fr.wei.plugin.h5reportnew.server.web.service.Html5TemplateService" />
+        <WebService class="com.fr.wei.plugin.h5reportnew.server.web.service.Html5DDAutoLoginService" />
+    </extra-core>
+    <extra-report>
+        <ActorProvider class="com.fr.wei.plugin.h5reportnew.server.report.Html5PageActorProvider"/>
+    </extra-report>
+    <extra-form>
+        <FormActor class="com.fr.wei.plugin.h5reportnew.server.form.NoScaleFormActor"/>
+        <FormActor class="com.fr.wei.plugin.h5reportnew.server.form.Html5FormActor"/>
+        <MobileJSONProcessor class="com.fr.wei.plugin.h5reportnew.server.provider.Html5MobileJSONProcessor"/>
+    </extra-form>
+    <extra-platform>
+        <PlateProvider class="com.fr.wei.plugin.h5reportnew.server.fs.Html5ManagementPlateProvider"/>
+    </extra-platform>
+</plugin>
