@@ -1,0 +1,23 @@
+{"type": "FeatureCollection",
+"cp":[117.2461,32.0361],
+"features":
+[
+{"type": "Feature","properties": {"name":"六安市"},"geometry": {"type": "Point","coordinates": [116.507676,31.752889]}},
+{"type": "Feature","properties": {"name":"安庆市"},"geometry": {"type": "Point","coordinates": [117.043551,30.50883]}},
+{"type": "Feature","properties": {"name":"滁州市"},"geometry": {"type": "Point","coordinates": [118.316264,32.303627]}},
+{"type": "Feature","properties": {"name":"宣城市"},"geometry": {"type": "Point","coordinates": [118.757995,30.945667]}},
+{"type": "Feature","properties": {"name":"阜阳市"},"geometry": {"type": "Point","coordinates": [115.819729,32.896969]}},
+{"type": "Feature","properties": {"name":"宿州市"},"geometry": {"type": "Point","coordinates": [116.984084,33.633891]}},
+{"type": "Feature","properties": {"name":"黄山市"},"geometry": {"type": "Point","coordinates": [118.317325,29.709239]}},
+{"type": "Feature","properties": {"name":"巢湖市"},"geometry": {"type": "Point","coordinates": [117.7734,31.4978]}},
+{"type": "Feature","properties": {"name":"亳州市"},"geometry": {"type": "Point","coordinates": [116.802149,33.306115]}},
+{"type": "Feature","properties": {"name":"池州市"},"geometry": {"type": "Point","coordinates": [117.489157,30.656037]}},
+{"type": "Feature","properties": {"name":"合肥市"},"geometry": {"type": "Point","coordinates": [117.283042,31.86119]}},
+{"type": "Feature","properties": {"name":"蚌埠市"},"geometry": {"type": "Point","coordinates": [117.363228,32.939667]}},
+{"type": "Feature","properties": {"name":"芜湖市"},"geometry": {"type": "Point","coordinates": [118.376451,31.326319]}},
+{"type": "Feature","properties": {"name":"淮北市"},"geometry": {"type": "Point","coordinates": [116.794664,33.971707]}},
+{"type": "Feature","properties": {"name":"淮南市"},"geometry": {"type": "Point","coordinates": [117.018329,32.647574]}},
+{"type": "Feature","properties": {"name":"马鞍山市"},"geometry": {"type": "Point","coordinates": [118.507906,31.689362]}},
+{"type": "Feature","properties": {"name":"铜陵市"},"geometry": {"type": "Point","coordinates": [117.816576,30.929935]}}
+]
+}
